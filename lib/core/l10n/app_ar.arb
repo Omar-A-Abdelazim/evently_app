@@ -1,0 +1,11 @@
+{
+  "@@locale": "ar",
+
+  "personalizeYourExperience": "خصص تجربتك",
+  "choosePreferredThemeAndLanguage": "اختر الثيم واللغة المفضلة لديك لتبدأ بتجربة مريحة ومخصصة تناسب أسلوبك.",
+  "language": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "theme": "الثيم",
+  "letsStart": "لنبدأ"
+}
