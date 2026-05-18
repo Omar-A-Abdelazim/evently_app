@@ -14,6 +14,14 @@ class AppTheme {
       surface: AppColors.backgroundLight,
       onSurface: AppColors.mainTextLight,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.inputsLight,
+      selectedItemColor: AppColors.mainLight,
+      unselectedItemColor: AppColors.disable,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.backgroundLight,
       foregroundColor: AppColors.mainTextLight,
@@ -26,6 +34,30 @@ class AppTheme {
         elevation: 0,
         padding: const EdgeInsets.all(16),
         textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.mainLight,
+        backgroundColor: AppColors.inputsLight,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.all(8),
+        elevation: 0,
+        side: BorderSide(color: AppColors.mainLight, width: 1),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.mainLight,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -135,6 +167,14 @@ class AppTheme {
       surface: AppColors.backgroundDark,
       onSurface: AppColors.mainTextDark,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.inputsDark,
+      selectedItemColor: AppColors.mainDark,
+      unselectedItemColor: AppColors.disableDark,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.backgroundDark,
       foregroundColor: AppColors.mainTextDark,
@@ -147,6 +187,30 @@ class AppTheme {
         elevation: 0,
         padding: const EdgeInsets.all(16),
         textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.mainDark,
+        backgroundColor: AppColors.inputsDark,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.all(8),
+        elevation: 0,
+        side: BorderSide(color: AppColors.mainDark, width: 1),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.mainDark,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
