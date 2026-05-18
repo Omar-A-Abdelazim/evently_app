@@ -1,14 +1,13 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/theme/app_theme.dart';
-import 'package:evently_app/data/firebase_auth_service.dart';
 import 'package:evently_app/firebase_options.dart';
 import 'package:evently_app/ui/app_setup/app_setup_screen.dart';
+import 'package:evently_app/ui/events_management/events_management_screen.dart';
 import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:evently_app/ui/register/register_screen.dart';
 import 'package:evently_app/ui/splash/splash_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +43,8 @@ class MyApp extends StatelessWidget {
             LoginScreen.routeName: (_) => const LoginScreen(),
             RegisterScreen.routeName: (_) => const RegisterScreen(),
             HomeScreen.routeName: (_) => const HomeScreen(),
+            EventsManagementScreen.routeName: (_) =>
+                const EventsManagementScreen(),
           },
         ),
       ),

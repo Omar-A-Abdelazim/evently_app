@@ -1,7 +1,7 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utils/data_validator.dart';
-import 'package:evently_app/data/firebase_auth_service.dart';
+import 'package:evently_app/data/firebase/firebase_auth_service.dart';
 import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/register/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

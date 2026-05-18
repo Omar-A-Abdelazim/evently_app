@@ -1,6 +1,6 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/utils/data_validator.dart';
-import 'package:evently_app/data/firebase_auth_service.dart';
+import 'package:evently_app/data/firebase/firebase_auth_service.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -151,24 +151,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isLoading = true;
                       });
 
-                      FirebaseAuthService authService = FirebaseAuthService();
-                      var user = await authService
-                          .createAccountWithEmailAndPassword(
-                            emailController.text,
-                            passwordController.text,
-                            nameController.text,
+                      try {
+                        FirebaseAuthService authService = FirebaseAuthService();
+                        var user = await authService
+                            .createAccountWithEmailAndPassword(
+                              emailController.text,
+                              passwordController.text,
+                              nameController.text,
+                            );
+
+                        if (!mounted) return;
+
+                        setState(() {
+                          isLoading = false;
+                        });
+
+                        if (user != null) {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            LoginScreen.routeName,
                           );
-
-                      if (!mounted) return;
-
-                      setState(() {
-                        isLoading = false;
-                      });
-
-                      if (user != null) {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          LoginScreen.routeName,
+                        }
+                      } catch (e) {
+                        if (!mounted) return;
+                        setState(() {
+                          isLoading = false;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(e.toString())),
                         );
                       }
                     },
