@@ -32,5 +32,22 @@
   "invalidEmailOrPassword": "Invalid email or password",
   "somethingWentWrong": "Something went wrong, please try again",
   "wrongPassword": "Wrong password provided for that user.",
-  "userNotFound": "No user found for that email."
+  "userNotFound": "No user found for that email.",
+  "addEvent": "Add Event",
+  "title": "Title",
+  "eventTitle": "Event Title",
+  "description": "Description",
+  "eventDescription": "Event Description",
+  "eventDate": "Event Date",
+  "chooseDate": "Choose Date",
+  "eventTime": "Event Time",
+  "chooseTime": "Choose Time",
+  "error": "Error",
+  "failedToCreateEvent": "Failed to create event: ",
+  "ok": "ok",
+  "noEvents": "No Events",
+  "welcomeBack": "Welcome Back!",
+  "home": "Home",
+  "favorites": "Favorites",
+  "profile": "Profile"
 }

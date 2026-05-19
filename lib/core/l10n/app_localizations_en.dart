@@ -104,4 +104,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userNotFound => 'No user found for that email.';
+
+  @override
+  String get addEvent => 'Add Event';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get eventTitle => 'Event Title';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get eventDescription => 'Event Description';
+
+  @override
+  String get eventDate => 'Event Date';
+
+  @override
+  String get chooseDate => 'Choose Date';
+
+  @override
+  String get eventTime => 'Event Time';
+
+  @override
+  String get chooseTime => 'Choose Time';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get failedToCreateEvent => 'Failed to create event: ';
+
+  @override
+  String get ok => 'ok';
+
+  @override
+  String get noEvents => 'No Events';
+
+  @override
+  String get welcomeBack => 'Welcome Back!';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get profile => 'Profile';
 }
