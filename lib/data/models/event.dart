@@ -9,6 +9,8 @@ class Event {
   DateTime date;
   DateTime time;
 
+  List<String> favorites = [];
+
   Event(
     this.uid,
     this.id,
@@ -17,6 +19,7 @@ class Event {
     this.description,
     this.date,
     this.time,
+    this.favorites,
   );
 
   factory Event.fromFirestore(
@@ -25,13 +28,16 @@ class Event {
   ) {
     final data = snapshot.data();
     return Event(
-      data?['id'] ?? '',
       data?['uid'] ?? '',
+      data?['id'] ?? '',
       data?['categoryId'] ?? '',
       data?['title'] ?? '',
       data?['description'] ?? '',
       (data?['date'] as Timestamp).toDate(),
       (data?['time'] as Timestamp).toDate(),
+      ((data?['favorites'] ?? []) as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
   }
 
@@ -44,6 +50,7 @@ class Event {
       'description': description,
       'date': Timestamp.fromDate(date),
       'time': Timestamp.fromDate(time),
+      'favorites': favorites,
     };
   }
 

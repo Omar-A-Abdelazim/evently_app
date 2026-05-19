@@ -1,5 +1,6 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/ui/events_management/events_management_screen.dart';
+import 'package:evently_app/ui/home/tabs/favorite/favorite_tab.dart';
 import 'package:evently_app/ui/home/tabs/home/home_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tabs = [
     HomeTab(),
-    Container(color: Colors.red),
+    FavoriteTab(),
     Container(color: Colors.green),
   ];
 

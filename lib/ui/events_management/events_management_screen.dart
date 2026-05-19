@@ -309,13 +309,14 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
       FirebaseAuth firebaseAuth = FirebaseAuth.instance;
       await eventsDatabase.createEvent(
         Event(
-          "",
           firebaseAuth.currentUser?.uid ?? "",
+          "",
           selectedCategory.id,
           titleController.text,
           descriptionController.text,
           selectedDate ?? DateTime.now(),
           DateTime(1, 1, 1, selectedTime!.hour, selectedTime!.minute),
+          [],
         ),
       );
       Navigator.pop(context);
