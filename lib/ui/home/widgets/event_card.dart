@@ -1,6 +1,8 @@
 import 'package:evently_app/core/provider/app_config_provider.dart';
+import 'package:evently_app/data/firebase/firebase_events_database.dart';
 import 'package:evently_app/data/models/category.dart';
 import 'package:evently_app/data/models/event.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +10,7 @@ import 'package:provider/provider.dart';
 class EventCard extends StatelessWidget {
   final Event event;
   late Category category;
+  FirebaseEventsDatabase database = FirebaseEventsDatabase();
   EventCard({super.key, required this.event}) {
     category = allCategories[event.categoryId]!;
   }
@@ -69,6 +72,25 @@ class EventCard extends StatelessWidget {
                         style: theme.textTheme.titleSmall!.copyWith(
                           color: theme.colorScheme.secondary,
                         ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        database.updateEventFavoriteState(
+                          event,
+                          event.favorites.contains(
+                            FirebaseAuth.instance.currentUser?.uid,
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        event.favorites.contains(
+                              FirebaseAuth.instance.currentUser?.uid,
+                            )
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: theme.colorScheme.primary,
+                        size: 32,
                       ),
                     ),
                   ],
