@@ -46,4 +46,6 @@ class Event {
       'time': Timestamp.fromDate(time),
     };
   }
+
+  void operator [](int other) {}
 }

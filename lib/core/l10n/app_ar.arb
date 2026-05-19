@@ -32,5 +32,22 @@
   "invalidEmailOrPassword": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
   "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة مرة أخرى",
   "wrongPassword": "كلمة المرور غير صحيحة",
-  "userNotFound": "لا يوجد حساب بهذا البريد الإلكتروني"
+  "userNotFound": "لا يوجد حساب بهذا البريد الإلكتروني",
+  "addEvent": "إضافة حدث",
+  "title": "العنوان",
+  "eventTitle": "عنوان الحدث",
+  "description": "الوصف",
+  "eventDescription": "وصف الحدث",
+  "eventDate": "تاريخ الحدث",
+  "chooseDate": "اختر التاريخ",
+  "eventTime": "وقت الحدث",
+  "chooseTime": "اختر الوقت",
+  "error": "خطأ",
+  "failedToCreateEvent": "فشل في إنشاء الحدث: ",
+  "ok": "حسنا",
+  "noEvents": "لا توجد أحداث",
+  "welcomeBack": "مرحبا بعودتك!",
+  "home": "الرئيسية",
+  "favorites": "المفضلة",
+  "profile": "الملف الشخصي"
 }

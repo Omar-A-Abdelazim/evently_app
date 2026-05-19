@@ -18,8 +18,8 @@ class Category {
   });
 }
 
-List<Category> get allCategories => [
-  Category(
+Map<String, Category> allCategories = {
+  'birthday': Category(
     id: 'birthday',
     nameEn: 'Birthday',
     nameAr: 'عيد ميلاد',
@@ -27,7 +27,7 @@ List<Category> get allCategories => [
     imageLight: 'assets/images/light/Birthday.png',
     icon: Icons.cake,
   ),
-  Category(
+  'book_club': Category(
     id: 'book_club',
     nameEn: 'Book Club',
     nameAr: 'نادي الكتاب',
@@ -35,7 +35,7 @@ List<Category> get allCategories => [
     imageLight: 'assets/images/light/Book Club.png',
     icon: Icons.menu_book,
   ),
-  Category(
+  'exhibition': Category(
     id: 'exhibition',
     nameEn: 'Exhibition',
     nameAr: 'معرض',
@@ -43,7 +43,7 @@ List<Category> get allCategories => [
     imageLight: 'assets/images/light/Exhibition.png',
     icon: Icons.art_track,
   ),
-  Category(
+  'meeting': Category(
     id: 'meeting',
     nameEn: 'Meeting',
     nameAr: 'اجتماع',
@@ -51,7 +51,7 @@ List<Category> get allCategories => [
     imageLight: 'assets/images/light/Meeting.png',
     icon: Icons.meeting_room,
   ),
-  Category(
+  'sport': Category(
     id: 'sport',
     nameEn: 'Sport',
     nameAr: 'رياضة',
@@ -59,4 +59,4 @@ List<Category> get allCategories => [
     imageLight: 'assets/images/light/Sport.png',
     icon: Icons.sports_soccer,
   ),
-];
+};

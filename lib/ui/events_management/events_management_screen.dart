@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utils/date_extension.dart';
 import 'package:evently_app/core/utils/dialog_utils.dart';
-import 'package:evently_app/data/firebase/firebase_auth_service.dart';
 import 'package:evently_app/data/firebase/firebase_events_database.dart';
 import 'package:evently_app/data/models/category.dart';
 import 'package:evently_app/data/models/event.dart';
@@ -21,7 +20,7 @@ class EventsManagementScreen extends StatefulWidget {
 }
 
 class _EventsManagementScreenState extends State<EventsManagementScreen> {
-  List<Category> categories = allCategories;
+  List<Category> categories = allCategories.values.toList();
   late Category selectedCategory;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -39,7 +38,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Add Event"),
+        title: Text(AppLocalizations.of(context)!.addEvent),
         leading: CustomBackButton(),
         leadingWidth: 80,
       ),
@@ -56,11 +55,14 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                 spacing: 8,
                 crossAxisAlignment: .start,
                 children: [
-                  Text("Title", style: Theme.of(context).textTheme.titleSmall),
+                  Text(
+                    AppLocalizations.of(context)!.title,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                   TextFormField(
                     controller: titleController,
                     decoration: InputDecoration(
-                      hintText: "Event Title",
+                      hintText: AppLocalizations.of(context)!.eventTitle,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -76,14 +78,14 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                 crossAxisAlignment: .start,
                 children: [
                   Text(
-                    "Description",
+                    AppLocalizations.of(context)!.description,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   TextFormField(
                     controller: descriptionController,
                     maxLines: 5,
                     decoration: InputDecoration(
-                      hintText: "Event Description",
+                      hintText: AppLocalizations.of(context)!.eventDescription,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -102,7 +104,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   Text(
-                    "Event Date",
+                    AppLocalizations.of(context)!.eventDate,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Spacer(),
@@ -123,7 +125,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                     },
                     child: Text(
                       selectedDate == null
-                          ? "Choose Date"
+                          ? AppLocalizations.of(context)!.chooseDate
                           : selectedDate!.formatDate(),
                       style: TextStyle(
                         fontSize: 14,
@@ -146,7 +148,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   Text(
-                    "Event Time",
+                    AppLocalizations.of(context)!.eventTime,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Spacer(),
@@ -165,7 +167,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                     },
                     child: Text(
                       selectedTime == null
-                          ? "Choose Time"
+                          ? AppLocalizations.of(context)!.chooseTime
                           : DateFormat("hh:mm a").format(
                               DateTime(
                                 1,
@@ -201,7 +203,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                   minimumSize: Size(double.infinity, 0),
                 ),
 
-                child: Text("Add Event"),
+                child: Text(AppLocalizations.of(context)!.addEvent),
               ),
             ),
           ],
@@ -322,9 +324,9 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
       Navigator.pop(context);
       DialogUtils.buildDialog(
         context,
-        title: "Error",
-        content: "Failed to create event: $e",
-        negActionText: "ok",
+        title: AppLocalizations.of(context)!.error,
+        content: "${AppLocalizations.of(context)!.failedToCreateEvent}$e",
+        negActionText: AppLocalizations.of(context)!.ok,
       );
     }
   }

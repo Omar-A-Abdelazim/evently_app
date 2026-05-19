@@ -105,4 +105,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get userNotFound => 'لا يوجد حساب بهذا البريد الإلكتروني';
+
+  @override
+  String get addEvent => 'إضافة حدث';
+
+  @override
+  String get title => 'العنوان';
+
+  @override
+  String get eventTitle => 'عنوان الحدث';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get eventDescription => 'وصف الحدث';
+
+  @override
+  String get eventDate => 'تاريخ الحدث';
+
+  @override
+  String get chooseDate => 'اختر التاريخ';
+
+  @override
+  String get eventTime => 'وقت الحدث';
+
+  @override
+  String get chooseTime => 'اختر الوقت';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get failedToCreateEvent => 'فشل في إنشاء الحدث: ';
+
+  @override
+  String get ok => 'حسنا';
+
+  @override
+  String get noEvents => 'لا توجد أحداث';
+
+  @override
+  String get welcomeBack => 'مرحبا بعودتك!';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get favorites => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
 }

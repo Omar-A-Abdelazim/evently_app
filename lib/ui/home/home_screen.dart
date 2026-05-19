@@ -1,4 +1,6 @@
+import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/ui/events_management/events_management_screen.dart';
+import 'package:evently_app/ui/home/tabs/home/home_tab.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tabs = [
-    Container(color: Colors.blue),
+    HomeTab(),
     Container(color: Colors.red),
     Container(color: Colors.green),
   ];
@@ -53,27 +55,26 @@ class _HomeScreenState extends State<HomeScreen> {
             });
           },
 
-          items: const [
+          items: [
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.home),
               icon: Icon(Icons.home),
-              label: "Home",
+              label: AppLocalizations.of(context)!.home,
             ),
-
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.favorite),
               icon: Icon(Icons.favorite),
-              label: "Favorites",
+              label: AppLocalizations.of(context)!.favorites,
             ),
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.person),
               icon: Icon(Icons.person),
-              label: "Profile",
+              label: AppLocalizations.of(context)!.profile,
             ),
           ],
         ),
       ),
-      body: const Center(child: Text("Home Screen")),
+      body: tabs[selectedIndex],
     );
   }
 }

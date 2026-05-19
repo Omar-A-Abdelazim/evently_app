@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently_app/data/models/event.dart';
+import 'package:flutter/widgets.dart';
 
 class FirebaseEventsDatabase {
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -18,5 +19,15 @@ class FirebaseEventsDatabase {
     var doc = refrence.doc();
     event.id = doc.id;
     await doc.set(event);
+  }
+
+  Stream<QuerySnapshot<Event>> getEvents(String categoryId) {
+    if (categoryId.isEmpty) {
+      return getCollectionReference().snapshots();
+    } else {
+      return getCollectionReference()
+          .where("categoryId", isEqualTo: categoryId)
+          .snapshots();
+    }
   }
 }
