@@ -1,5 +1,6 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
+import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -127,7 +128,12 @@ class AppSetupScreen extends StatelessWidget {
                 ],
               ),
               FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    LoginScreen.routeName,
+                  );
+                },
                 style: FilledButton.styleFrom(
                   minimumSize: Size(double.infinity, 56),
                 ),

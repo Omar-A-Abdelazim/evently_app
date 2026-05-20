@@ -14,7 +14,15 @@ class AppTheme {
       surface: AppColors.backgroundLight,
       onSurface: AppColors.mainTextLight,
     ),
-    appBarTheme: AppBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.inputsLight,
+      selectedItemColor: AppColors.mainLight,
+      unselectedItemColor: AppColors.disable,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.backgroundLight,
       foregroundColor: AppColors.mainTextLight,
     ),
@@ -24,28 +32,52 @@ class AppTheme {
         foregroundColor: AppColors.inputsLight,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 0,
-        padding: EdgeInsets.all(16),
-        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.all(16),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.mainLight,
+        backgroundColor: AppColors.inputsLight,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.all(8),
+        elevation: 0,
+        side: BorderSide(color: AppColors.mainLight, width: 1),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.mainLight,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         backgroundColor: AppColors.backgroundLight,
         foregroundColor: AppColors.mainLight,
-        side: BorderSide(width: 1, color: AppColors.mainLight),
+        side: const BorderSide(width: 1, color: AppColors.mainLight),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 0,
-        padding: EdgeInsets.all(16),
-        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.all(16),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.mainLight,
       foregroundColor: AppColors.inputsLight,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       elevation: 4,
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
@@ -92,7 +124,36 @@ class AppTheme {
         color: AppColors.mainTextLight,
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.inputsLight,
+      contentPadding: const EdgeInsets.all(16),
+      hintStyle: TextStyle(fontSize: 14, color: AppColors.secTextLight),
+      suffixIconColor: AppColors.disable,
+      prefixIconColor: AppColors.disable,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.strokeLight),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.mainLight, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.red, width: 2),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.strokeLight),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.red, width: 2),
+      ),
+    ),
   );
+
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme(
@@ -100,13 +161,21 @@ class AppTheme {
       primary: AppColors.mainDark,
       onPrimary: Colors.white,
       secondary: AppColors.secTextDark,
-      onSecondary: Colors.white,
+      onSecondary: AppColors.inputsDark,
       error: AppColors.redDark,
       onError: Colors.white,
       surface: AppColors.backgroundDark,
       onSurface: AppColors.mainTextDark,
     ),
-    appBarTheme: AppBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.inputsDark,
+      selectedItemColor: AppColors.mainDark,
+      unselectedItemColor: AppColors.disableDark,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.backgroundDark,
       foregroundColor: AppColors.mainTextDark,
     ),
@@ -116,28 +185,52 @@ class AppTheme {
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 0,
-        padding: EdgeInsets.all(16),
-        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.all(16),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.mainDark,
+        backgroundColor: AppColors.inputsDark,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.all(8),
+        elevation: 0,
+        side: BorderSide(color: AppColors.mainDark, width: 1),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.mainDark,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         backgroundColor: AppColors.backgroundDark,
         foregroundColor: AppColors.mainDark,
-        side: BorderSide(width: 1, color: AppColors.mainDark),
+        side: const BorderSide(width: 1, color: AppColors.mainDark),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 0,
-        padding: EdgeInsets.all(16),
-        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.all(16),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.mainDark,
       foregroundColor: Colors.white,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       elevation: 4,
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
@@ -182,6 +275,34 @@ class AppTheme {
         fontSize: 12,
         fontWeight: FontWeight.bold,
         color: AppColors.secTextDark,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.inputsDark,
+      contentPadding: const EdgeInsets.all(16),
+      hintStyle: TextStyle(fontSize: 14, color: AppColors.secTextDark),
+      prefixIconColor: AppColors.disableDark,
+      suffixIconColor: AppColors.disableDark,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.strokeDark),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.mainDark, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.redDark, width: 2),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.strokeDark),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: AppColors.redDark, width: 2),
       ),
     ),
   );
