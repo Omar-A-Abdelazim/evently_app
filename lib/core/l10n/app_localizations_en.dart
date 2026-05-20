@@ -155,4 +155,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get areYouSureYouWantToLogout => 'Are you sure you want to logout?';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get noNameFound => 'No name found';
+
+  @override
+  String get noEmailFound => 'No email found';
+
+  @override
+  String get searchForEvent => 'Search for event';
+
+  @override
+  String get noResultsFor => 'No results for';
+
+  @override
+  String get noFavoriteEvents => 'No favorite events';
 }

@@ -391,6 +391,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @areYouSureYouWantToLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get areYouSureYouWantToLogout;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @noNameFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No name found'**
+  String get noNameFound;
+
+  /// No description provided for @noEmailFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No email found'**
+  String get noEmailFound;
+
+  /// No description provided for @searchForEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for event'**
+  String get searchForEvent;
+
+  /// No description provided for @noResultsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for'**
+  String get noResultsFor;
+
+  /// No description provided for @noFavoriteEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite events'**
+  String get noFavoriteEvents;
 }
 
 class _AppLocalizationsDelegate

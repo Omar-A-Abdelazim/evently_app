@@ -23,10 +23,13 @@ class FirebaseEventsDatabase {
   }
 
   Stream<QuerySnapshot<Event>> getEvents(String categoryId) {
+    var uid = FirebaseAuth.instance.currentUser?.uid;
+
     if (categoryId.isEmpty) {
-      return getCollectionReference().snapshots();
+      return getCollectionReference().where("uid", isEqualTo: uid).snapshots();
     } else {
       return getCollectionReference()
+          .where("uid", isEqualTo: uid)
           .where("categoryId", isEqualTo: categoryId)
           .snapshots();
     }
@@ -50,5 +53,18 @@ class FirebaseEventsDatabase {
     }
 
     await doc.update(event.toFirestore());
+  }
+
+  Future<void> updateEvent(Event event) async {
+    var reference = getCollectionReference();
+    await reference.doc(event.id).update(event.toFirestore());
+  }
+
+  Future<void> deleteEvent(String eventId) async {
+    await getCollectionReference().doc(eventId).delete();
+  }
+
+  Stream<DocumentSnapshot<Event>> getEventById(String eventId) {
+    return getCollectionReference().doc(eventId).snapshots();
   }
 }

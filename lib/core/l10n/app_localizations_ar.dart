@@ -156,4 +156,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get logout => 'تسجيل خروج';
+
+  @override
+  String get areYouSureYouWantToLogout => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get noNameFound => 'لم يتم العثور على اسم';
+
+  @override
+  String get noEmailFound => 'لم يتم العثور على بريد إلكتروني';
+
+  @override
+  String get searchForEvent => 'ابحث عن حدث';
+
+  @override
+  String get noResultsFor => 'لا توجد نتائج لـ';
+
+  @override
+  String get noFavoriteEvents => 'لا توجد أحداث مفضلة';
 }
