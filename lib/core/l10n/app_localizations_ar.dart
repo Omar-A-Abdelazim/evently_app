@@ -29,4 +29,155 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get letsStart => 'لنبدأ';
+
+  @override
+  String get loginToYourAccount => 'تسجيل الدخول إلى حسابك';
+
+  @override
+  String get enterYourEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterYourPassword => 'أدخل كلمة المرور الخاصة بك';
+
+  @override
+  String get forgotPassword => 'هل نسيت كلمة المرور؟';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get dontHaveAnAccount => 'ليس لديك حساب؟ ';
+
+  @override
+  String get signUp => 'إنشاء حساب';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get loginWithGoogle => 'تسجيل الدخول باستخدام جوجل';
+
+  @override
+  String get createYourAccount => 'إنشاء حسابك';
+
+  @override
+  String get enterYourName => 'أدخل اسمك';
+
+  @override
+  String get confirmYourPassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get alreadyHaveAnAccount => 'لديك حساب بالفعل؟ ';
+
+  @override
+  String get signUpWithGoogle => 'التسجيل باستخدام جوجل';
+
+  @override
+  String get nameCannotBeEmpty => 'الاسم لا يمكن أن يكون فارغاً';
+
+  @override
+  String get emailCannotBeEmpty => 'البريد الإلكتروني لا يمكن أن يكون فارغاً';
+
+  @override
+  String get invalidEmailFormat => 'صيغة البريد الإلكتروني غير صالحة';
+
+  @override
+  String get passwordCannotBeEmpty => 'كلمة المرور لا يمكن أن تكون فارغة';
+
+  @override
+  String get passwordTooShort => 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get invalidEmailOrPassword =>
+      'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+
+  @override
+  String get somethingWentWrong => 'حدث خطأ ما، يرجى المحاولة مرة أخرى';
+
+  @override
+  String get wrongPassword => 'كلمة المرور غير صحيحة';
+
+  @override
+  String get userNotFound => 'لا يوجد حساب بهذا البريد الإلكتروني';
+
+  @override
+  String get addEvent => 'إضافة حدث';
+
+  @override
+  String get title => 'العنوان';
+
+  @override
+  String get eventTitle => 'عنوان الحدث';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get eventDescription => 'وصف الحدث';
+
+  @override
+  String get eventDate => 'تاريخ الحدث';
+
+  @override
+  String get chooseDate => 'اختر التاريخ';
+
+  @override
+  String get eventTime => 'وقت الحدث';
+
+  @override
+  String get chooseTime => 'اختر الوقت';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get failedToCreateEvent => 'فشل في إنشاء الحدث: ';
+
+  @override
+  String get ok => 'حسنا';
+
+  @override
+  String get noEvents => 'لا توجد أحداث';
+
+  @override
+  String get welcomeBack => 'مرحبا بعودتك!';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get favorites => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get logout => 'تسجيل خروج';
+
+  @override
+  String get areYouSureYouWantToLogout => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get noNameFound => 'لم يتم العثور على اسم';
+
+  @override
+  String get noEmailFound => 'لم يتم العثور على بريد إلكتروني';
+
+  @override
+  String get searchForEvent => 'ابحث عن حدث';
+
+  @override
+  String get noResultsFor => 'لا توجد نتائج لـ';
+
+  @override
+  String get noFavoriteEvents => 'لا توجد أحداث مفضلة';
 }
