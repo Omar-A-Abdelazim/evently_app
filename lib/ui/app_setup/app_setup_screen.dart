@@ -1,6 +1,7 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
+import 'package:evently_app/ui/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -131,7 +132,7 @@ class AppSetupScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacementNamed(
                     context,
-                    LoginScreen.routeName,
+                    OnboardingScreen.routeName,
                   );
                 },
                 style: FilledButton.styleFrom(

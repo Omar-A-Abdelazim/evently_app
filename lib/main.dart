@@ -10,6 +10,7 @@ import 'package:evently_app/ui/events_management/events_management_screen.dart';
 import 'package:evently_app/ui/forget_password/forget_password_screen.dart';
 import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
+import 'package:evently_app/ui/onboarding/onboarding.dart';
 import 'package:evently_app/ui/register/register_screen.dart';
 import 'package:evently_app/ui/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
               final event = ModalRoute.of(context)!.settings.arguments as Event;
               return EditEventScreen(event: event);
             },
+            OnboardingScreen.routeName: (_) => const OnboardingScreen(),
           },
         ),
       ),
