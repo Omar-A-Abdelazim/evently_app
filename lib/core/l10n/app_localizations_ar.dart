@@ -105,4 +105,79 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get userNotFound => 'لا يوجد حساب بهذا البريد الإلكتروني';
+
+  @override
+  String get addEvent => 'إضافة حدث';
+
+  @override
+  String get title => 'العنوان';
+
+  @override
+  String get eventTitle => 'عنوان الحدث';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get eventDescription => 'وصف الحدث';
+
+  @override
+  String get eventDate => 'تاريخ الحدث';
+
+  @override
+  String get chooseDate => 'اختر التاريخ';
+
+  @override
+  String get eventTime => 'وقت الحدث';
+
+  @override
+  String get chooseTime => 'اختر الوقت';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get failedToCreateEvent => 'فشل في إنشاء الحدث: ';
+
+  @override
+  String get ok => 'حسنا';
+
+  @override
+  String get noEvents => 'لا توجد أحداث';
+
+  @override
+  String get welcomeBack => 'مرحبا بعودتك!';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get favorites => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get logout => 'تسجيل خروج';
+
+  @override
+  String get areYouSureYouWantToLogout => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get noNameFound => 'لم يتم العثور على اسم';
+
+  @override
+  String get noEmailFound => 'لم يتم العثور على بريد إلكتروني';
+
+  @override
+  String get searchForEvent => 'ابحث عن حدث';
+
+  @override
+  String get noResultsFor => 'لا توجد نتائج لـ';
+
+  @override
+  String get noFavoriteEvents => 'لا توجد أحداث مفضلة';
 }

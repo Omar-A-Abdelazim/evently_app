@@ -12,15 +12,9 @@ class FirebaseAuthService {
       await credential.user?.updateDisplayName(name);
       return credential.user;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-        return null;
-      }
+      rethrow;
     } catch (e) {
-      print(e);
-      return null;
+      rethrow;
     }
   }
 
@@ -33,5 +27,15 @@ class FirebaseAuthService {
       password: password,
     );
     return credential.user;
+  }
+
+  Future<void> forgetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

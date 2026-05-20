@@ -20,6 +20,8 @@ dependencies:
   shared_preferences: ^2.5.5
   firebase_core: ^4.7.0
   firebase_auth: ^6.4.0
+  cloud_firestore: ^6.4.1
+  animated_toggle_switch: ^0.8.7
 
 dev_dependencies:
   flutter_test:
@@ -31,5 +33,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/dark/
+    - assets/images/light/
 
   generate: true

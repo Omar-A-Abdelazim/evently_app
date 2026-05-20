@@ -1,7 +1,9 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utils/data_validator.dart';
-import 'package:evently_app/data/firebase_auth_service.dart';
+import 'package:evently_app/core/utils/date_extension.dart';
+import 'package:evently_app/data/firebase/firebase_auth_service.dart';
+import 'package:evently_app/ui/forget_password/forget_password_screen.dart';
 import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/register/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Form(
             key: formKey,
             child: ListView(
-              // ← أهم تعديل
               physics: const BouncingScrollPhysics(),
               children: [
                 const SizedBox(height: 40),
@@ -80,30 +81,35 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     hintText: localizations.enterYourPassword,
                     prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        isPasswordObscure
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () {
+                    suffixIcon: GestureDetector(
+                      onTap: () {
                         setState(() {
                           isPasswordObscure = !isPasswordObscure;
                         });
                       },
+                      child: Icon(
+                        isPasswordObscure
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
                     ),
                   ),
                 ),
-
+                25.verticalSpace,
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgetPasswordScreen.routeName,
+                      );
+                    },
                     child: Text(localizations.forgotPassword),
                   ),
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 35),
 
                 FilledButton(
                   onPressed: () async {
