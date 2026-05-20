@@ -161,7 +161,7 @@ class AppTheme {
       primary: AppColors.mainDark,
       onPrimary: Colors.white,
       secondary: AppColors.secTextDark,
-      onSecondary: Colors.white,
+      onSecondary: AppColors.inputsDark,
       error: AppColors.redDark,
       onError: Colors.white,
       surface: AppColors.backgroundDark,

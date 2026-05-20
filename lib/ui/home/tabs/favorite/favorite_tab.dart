@@ -6,6 +6,7 @@ import 'package:evently_app/data/models/event.dart';
 import 'package:evently_app/ui/home/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:evently_app/core/l10n/app_localizations.dart';
 
 class FavoriteTab extends StatefulWidget {
   const FavoriteTab({super.key});
@@ -45,7 +46,7 @@ class _FavoriteTabState extends State<FavoriteTab> {
 
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
+        toolbarHeight: 80,
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(right: 16, left: 8),
@@ -57,7 +58,7 @@ class _FavoriteTabState extends State<FavoriteTab> {
               style: theme.textTheme.bodyMedium,
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                hintText: 'Search for event',
+                hintText: AppLocalizations.of(context)!.searchForEvent,
                 hintStyle: TextStyle(
                   color: isDark
                       ? AppColors.secTextDark
@@ -118,7 +119,11 @@ class _FavoriteTabState extends State<FavoriteTab> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
+            return Center(
+              child: Text(
+                "${AppLocalizations.of(context)!.error}: ${snapshot.error}",
+              ),
+            );
           } else if (snapshot.hasData) {
             final allEvents =
                 snapshot.data?.docs.map((doc) => doc.data()).toList() ?? [];
@@ -141,14 +146,18 @@ class _FavoriteTabState extends State<FavoriteTab> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'No results for "$_searchQuery"',
+                            '${AppLocalizations.of(context)!.noResultsFor} "$_searchQuery"',
                             style: theme.textTheme.bodyLarge,
                           ),
                         ],
                       ),
                     )
                   : allEvents.isEmpty
-                  ? const Center(child: Text("No favorite events"))
+                  ? Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.noFavoriteEvents,
+                      ),
+                    )
                   : ListView.separated(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       itemCount: filteredEvents.length,
@@ -159,7 +168,9 @@ class _FavoriteTabState extends State<FavoriteTab> {
                     ),
             );
           }
-          return const Center(child: Text("No favorite events"));
+          return Center(
+            child: Text(AppLocalizations.of(context)!.noFavoriteEvents),
+          );
         },
       ),
     );

@@ -28,4 +28,14 @@ class FirebaseAuthService {
     );
     return credential.user;
   }
+
+  Future<void> forgetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

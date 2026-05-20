@@ -49,5 +49,13 @@
   "welcomeBack": "Welcome Back!",
   "home": "Home",
   "favorites": "Favorites",
-  "profile": "Profile"
+  "profile": "Profile",
+  "logout": "Logout",
+  "areYouSureYouWantToLogout": "Are you sure you want to logout?",
+  "cancel": "Cancel",
+  "noNameFound": "No name found",
+  "noEmailFound": "No email found",
+  "searchForEvent": "Search for event",
+  "noResultsFor": "No results for",
+  "noFavoriteEvents": "No favorite events"
 }

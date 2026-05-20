@@ -49,5 +49,13 @@
   "welcomeBack": "مرحبا بعودتك!",
   "home": "الرئيسية",
   "favorites": "المفضلة",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "logout": "تسجيل خروج",
+  "areYouSureYouWantToLogout": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "cancel": "إلغاء",
+  "noNameFound": "لم يتم العثور على اسم",
+  "noEmailFound": "لم يتم العثور على بريد إلكتروني",
+  "searchForEvent": "ابحث عن حدث",
+  "noResultsFor": "لا توجد نتائج لـ",
+  "noFavoriteEvents": "لا توجد أحداث مفضلة"
 }

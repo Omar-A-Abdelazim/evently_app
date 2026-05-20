@@ -95,17 +95,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: InputDecoration(
                       hintText: localizations.enterYourPassword,
                       prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          isPasswordObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        onPressed: () {
+                      suffixIcon: GestureDetector(
+                        onTap: () {
                           setState(() {
                             isPasswordObscure = !isPasswordObscure;
                           });
                         },
+                        child: Icon(
+                          isPasswordObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
                       ),
                     ),
                   ),
@@ -124,18 +124,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: InputDecoration(
                       hintText: localizations.confirmYourPassword,
                       prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          isConfirmPasswordObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        onPressed: () {
+                      suffixIcon: GestureDetector(
+                        onTap: () {
                           setState(() {
                             isConfirmPasswordObscure =
                                 !isConfirmPasswordObscure;
                           });
                         },
+                        child: Icon(
+                          isConfirmPasswordObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
                       ),
                     ),
                   ),

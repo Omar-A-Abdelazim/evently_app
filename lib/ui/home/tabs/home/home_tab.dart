@@ -48,54 +48,58 @@ class _HomeTabState extends State<HomeTab> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.welcomeBack,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Text(
-                    FirebaseAuth.instance.currentUser?.displayName ?? "",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-            ),
-            // Theme Toggle
-            GestureDetector(
-              onTap: () => provider.toggleTheme(),
-              child: Icon(
-                provider.isDark ? Icons.dark_mode : Icons.light_mode,
-                size: 28,
-              ),
-            ),
-            const SizedBox(width: 16),
-            // Language Toggle
-            GestureDetector(
-              onTap: () => provider.toggleLanguage(),
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  provider.isEnglish ? "EN" : "ع",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.surface,
-                    fontWeight: FontWeight.bold,
-                  ),
+        toolbarHeight: 80,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 32.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.welcomeBack,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(
+                      FirebaseAuth.instance.currentUser?.displayName ?? "",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              // Theme Toggle
+              GestureDetector(
+                onTap: () => provider.toggleTheme(),
+                child: Icon(
+                  provider.isDark ? Icons.dark_mode : Icons.light_mode,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(width: 16),
+              // Language Toggle
+              GestureDetector(
+                onTap: () => provider.toggleLanguage(),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    provider.isEnglish ? "EN" : "ع",
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Theme.of(context).colorScheme.surface,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         bottom: PreferredSize(
-          preferredSize: Size(0, 80),
+          preferredSize: const Size(0, 80),
           child: buildCategoriesTabBar(context),
         ),
       ),
