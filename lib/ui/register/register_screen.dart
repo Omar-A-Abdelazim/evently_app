@@ -28,228 +28,234 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final theme = Theme.of(context);
     final localizations = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-            child: Form(
-              key: formKey,
-              child: ListView(
-                children: [
-                  const SizedBox(height: 40),
-                  Center(
-                    child: Image.asset(
-                      theme.brightness == Brightness.dark
-                          ? "assets/images/logo_dark.png"
-                          : "assets/images/logo_light.png",
-                      width: 180,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-
-                  Text(
-                    localizations.createYourAccount,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-
-                  // Name Field
-                  TextFormField(
-                    controller: nameController,
-                    validator: (value) =>
-                        DataValidator.validateName(value, localizations),
-                    autovalidateMode: .onUserInteraction,
-                    decoration: InputDecoration(
-                      hintText: localizations.enterYourName,
-                      prefixIcon: const Icon(Icons.person_outline),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Email Field
-                  TextFormField(
-                    controller: emailController,
-                    validator: (value) =>
-                        DataValidator.validateEmail(value, localizations),
-                    autovalidateMode: .onUserInteraction,
-
-                    decoration: InputDecoration(
-                      hintText: localizations.enterYourEmail,
-                      prefixIcon: const Icon(Icons.email_outlined),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Password Field
-                  TextFormField(
-                    controller: passwordController,
-                    validator: (value) =>
-                        DataValidator.validatePassword(value, localizations),
-                    autovalidateMode: .onUserInteraction,
-
-                    obscureText: isPasswordObscure,
-                    decoration: InputDecoration(
-                      hintText: localizations.enterYourPassword,
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isPasswordObscure = !isPasswordObscure;
-                          });
-                        },
-                        child: Icon(
-                          isPasswordObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(), // إغلاق الكيبورد
+      child: Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 20,
+              ),
+              child: Form(
+                key: formKey,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 40),
+                    Center(
+                      child: Image.asset(
+                        theme.brightness == Brightness.dark
+                            ? "assets/images/logo_dark.png"
+                            : "assets/images/logo_light.png",
+                        width: 180,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 50),
 
-                  // Confirm Password Field
-                  TextFormField(
-                    controller: confirmPasswordController,
-                    validator: (value) => DataValidator.validateConfirmPassword(
-                      value,
-                      passwordController.text,
-                      localizations,
-                    ),
-                    autovalidateMode: .onUserInteraction,
-                    obscureText: isConfirmPasswordObscure,
-                    decoration: InputDecoration(
-                      hintText: localizations.confirmYourPassword,
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isConfirmPasswordObscure =
-                                !isConfirmPasswordObscure;
-                          });
-                        },
-                        child: Icon(
-                          isConfirmPasswordObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 40),
-
-                  FilledButton(
-                    onPressed: () async {
-                      if (isLoading) return;
-                      if (formKey.currentState?.validate() == false) return;
-
-                      setState(() {
-                        isLoading = true;
-                      });
-
-                      try {
-                        FirebaseAuthService authService = FirebaseAuthService();
-                        var user = await authService
-                            .createAccountWithEmailAndPassword(
-                              emailController.text,
-                              passwordController.text,
-                              nameController.text,
-                            );
-
-                        if (!mounted) return;
-
-                        setState(() {
-                          isLoading = false;
-                        });
-
-                        if (user != null) {
-                          Navigator.pushReplacementNamed(
-                            context,
-                            LoginScreen.routeName,
-                          );
-                        }
-                      } catch (e) {
-                        if (!mounted) return;
-                        setState(() {
-                          isLoading = false;
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(e.toString())),
-                        );
-                      }
-                    },
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 56),
-                    ),
-                    child: isLoading
-                        ? CircularProgressIndicator(
-                            color: theme.colorScheme.surface,
-                          )
-                        : Text(localizations.register),
-                  ),
-
-                  const SizedBox(height: 52),
-
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        style: theme.textTheme.bodyMedium,
-                        children: [
-                          TextSpan(text: localizations.dontHaveAnAccount),
-                          WidgetSpan(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  LoginScreen.routeName,
-                                );
-                              },
-                              child: Text(
-                                localizations.login,
-                                style: TextStyle(
-                                  color: theme.colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  Center(
-                    child: Text(
-                      localizations.or,
-                      style: theme.textTheme.titleMedium?.copyWith(
+                    Text(
+                      localizations.createYourAccount,
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 40),
 
-                  const SizedBox(height: 24),
+                    // Name Field
+                    TextFormField(
+                      controller: nameController,
+                      validator: (value) =>
+                          DataValidator.validateName(value, localizations),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: localizations.enterYourName,
+                        prefixIcon: const Icon(Icons.person_outline),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
 
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 56),
+                    // Email Field
+                    TextFormField(
+                      controller: emailController,
+                      validator: (value) =>
+                          DataValidator.validateEmail(value, localizations),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: localizations.enterYourEmail,
+                        prefixIcon: const Icon(Icons.email_outlined),
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/images/google.png", width: 24),
-                        const SizedBox(width: 12),
-                        Text(localizations.signUpWithGoogle),
-                      ],
+                    const SizedBox(height: 16),
+
+                    // Password Field
+                    TextFormField(
+                      controller: passwordController,
+                      validator: (value) =>
+                          DataValidator.validatePassword(value, localizations),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: isPasswordObscure,
+                      decoration: InputDecoration(
+                        hintText: localizations.enterYourPassword,
+                        prefixIcon: const Icon(Icons.lock_outline),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isPasswordObscure = !isPasswordObscure;
+                            });
+                          },
+                          child: Icon(
+                            isPasswordObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+
+                    // Confirm Password Field
+                    TextFormField(
+                      controller: confirmPasswordController,
+                      validator: (value) =>
+                          DataValidator.validateConfirmPassword(
+                            value,
+                            passwordController.text,
+                            localizations,
+                          ),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: isConfirmPasswordObscure,
+                      decoration: InputDecoration(
+                        hintText: localizations.confirmYourPassword,
+                        prefixIcon: const Icon(Icons.lock_outline),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isConfirmPasswordObscure =
+                                  !isConfirmPasswordObscure;
+                            });
+                          },
+                          child: Icon(
+                            isConfirmPasswordObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 40),
+
+                    FilledButton(
+                      onPressed: () async {
+                        if (isLoading) return;
+                        if (formKey.currentState?.validate() == false) return;
+
+                        setState(() {
+                          isLoading = true;
+                        });
+
+                        try {
+                          FirebaseAuthService authService =
+                              FirebaseAuthService();
+                          var user = await authService
+                              .createAccountWithEmailAndPassword(
+                                emailController.text,
+                                passwordController.text,
+                                nameController.text,
+                              );
+
+                          if (!mounted) return;
+
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          if (user != null) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              LoginScreen.routeName,
+                            );
+                          }
+                        } catch (e) {
+                          if (!mounted) return;
+                          setState(() {
+                            isLoading = false;
+                          });
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(e.toString())));
+                        }
+                      },
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 56),
+                      ),
+                      child: isLoading
+                          ? CircularProgressIndicator(
+                              color: theme.colorScheme.surface,
+                            )
+                          : Text(localizations.register),
+                    ),
+
+                    const SizedBox(height: 52),
+
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          style: theme.textTheme.bodyMedium,
+                          children: [
+                            TextSpan(text: localizations.dontHaveAnAccount),
+                            WidgetSpan(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    LoginScreen.routeName,
+                                  );
+                                },
+                                child: Text(
+                                  localizations.login,
+                                  style: TextStyle(
+                                    color: theme.colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    Center(
+                      child: Text(
+                        localizations.or,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 56),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/google.png", width: 24),
+                          const SizedBox(width: 12),
+                          Text(localizations.signUpWithGoogle),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

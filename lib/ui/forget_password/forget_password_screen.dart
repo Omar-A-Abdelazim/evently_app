@@ -26,98 +26,103 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     final localizations = AppLocalizations.of(context)!;
     final provider = Provider.of<AppConfigProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(title: Text(localizations.forgotPassword)),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-          child: Form(
-            key: formKey,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: [
-                const SizedBox(height: 24),
-                Image.asset(
-                  provider.isDark
-                      ? "assets/images/dark/Password.png"
-                      : "assets/images/light/Password.png",
-                  height: 220,
-                ),
-                const SizedBox(height: 40),
-
-                Text(
-                  localizations.forgotPassword,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(), // إغلاق الكيبورد
+      child: Scaffold(
+        appBar: AppBar(title: Text(localizations.forgotPassword)),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+            child: Form(
+              key: formKey,
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  const SizedBox(height: 24),
+                  Image.asset(
+                    provider.isDark
+                        ? "assets/images/dark/Password.png"
+                        : "assets/images/light/Password.png",
+                    height: 220,
                   ),
-                ),
+                  const SizedBox(height: 40),
 
-                const SizedBox(height: 32),
-
-                TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) =>
-                      DataValidator.validateEmail(value, localizations),
-                  decoration: InputDecoration(
-                    hintText: localizations.enterYourEmail,
-                    prefixIcon: const Icon(Icons.email_outlined),
+                  Text(
+                    localizations.forgotPassword,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 40),
+                  const SizedBox(height: 32),
 
-                FilledButton(
-                  onPressed: () async {
-                    if (isLoading) return;
-                    if (formKey.currentState?.validate() == false) return;
+                  TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                        DataValidator.validateEmail(value, localizations),
+                    decoration: InputDecoration(
+                      hintText: localizations.enterYourEmail,
+                      prefixIcon: const Icon(Icons.email_outlined),
+                    ),
+                  ),
 
-                    setState(() => isLoading = true);
+                  const SizedBox(height: 40),
 
-                    try {
-                      await FirebaseAuthService().forgetPassword(
-                        emailController.text.trim(),
-                      );
+                  FilledButton(
+                    onPressed: () async {
+                      if (isLoading) return;
+                      if (formKey.currentState?.validate() == false) return;
 
-                      if (!mounted) return;
-                      setState(() => isLoading = false);
+                      setState(() => isLoading = true);
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            "Reset password email sent" /*localizations.resetPasswordEmailSent*/,
+                      try {
+                        await FirebaseAuthService().forgetPassword(
+                          emailController.text.trim(),
+                        );
+
+                        if (!mounted) return;
+                        setState(() => isLoading = false);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Reset password email sent" /*localizations.resetPasswordEmailSent*/,
+                            ),
                           ),
-                        ),
-                      );
+                        );
 
-                      Navigator.pop(context);
-                    } catch (e) {
-                      if (!mounted) return;
-                      setState(() => isLoading = false);
+                        Navigator.pop(context);
+                      } catch (e) {
+                        if (!mounted) return;
+                        setState(() => isLoading = false);
 
-                      String errorMessage = localizations.somethingWentWrong;
-                      if (e is FirebaseAuthException &&
-                          e.code == 'user-not-found') {
-                        errorMessage = localizations.userNotFound;
+                        String errorMessage = localizations.somethingWentWrong;
+                        if (e is FirebaseAuthException &&
+                            e.code == 'user-not-found') {
+                          errorMessage = localizations.userNotFound;
+                        }
+
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(errorMessage)));
                       }
-
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text(errorMessage)));
-                    }
-                  },
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 56),
+                    },
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 56),
+                    ),
+                    child: isLoading
+                        ? CircularProgressIndicator(
+                            color: theme.colorScheme.surface,
+                          )
+                        : Text(
+                            "Reset Password" /*localizations.resetPassword*/,
+                          ),
                   ),
-                  child: isLoading
-                      ? CircularProgressIndicator(
-                          color: theme.colorScheme.surface,
-                        )
-                      : Text("Reset Password" /*localizations.resetPassword*/),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
