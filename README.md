@@ -100,7 +100,7 @@ dependencies:
   firebase_core: latest
   firebase_auth: latest
   cloud_firestore: latest
-  google_sign_in: ^6.2.1
+  google_sign_in: ^7.2.0
   provider: latest
   intl: latest
 ```
