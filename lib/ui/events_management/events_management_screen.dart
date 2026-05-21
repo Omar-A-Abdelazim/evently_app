@@ -35,178 +35,186 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(AppLocalizations.of(context)!.addEvent),
-        leading: CustomBackButton(),
-        leadingWidth: 80,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          spacing: 16,
-          children: [
-            SizedBox(),
-            eventImageCover(context),
-            buildCategoriesTabBar(context),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                spacing: 8,
-                crossAxisAlignment: .start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.title,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  TextFormField(
-                    controller: titleController,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.eventTitle,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(), // إغلاق الكيبورد
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(AppLocalizations.of(context)!.addEvent),
+          leading: CustomBackButton(),
+          leadingWidth: 80,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            spacing: 16,
+            children: [
+              SizedBox(),
+              eventImageCover(context),
+              buildCategoriesTabBar(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  spacing: 8,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.title,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    TextFormField(
+                      controller: titleController,
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context)!.eventTitle,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                spacing: 8,
-                crossAxisAlignment: .start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.description,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  TextFormField(
-                    controller: descriptionController,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.eventDescription,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                spacing: 8,
-                children: [
-                  Icon(
-                    Icons.date_range,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.eventDate,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Spacer(),
-                  TextButton(
-                    onPressed: () async {
-                      var date = await showDatePicker(
-                        context: context,
-                        initialDate: selectedDate,
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now().add(Duration(days: 100)),
-                      );
-                      print(date);
-                      if (date != null) {
-                        setState(() {
-                          selectedDate = date;
-                        });
-                      }
-                    },
-                    child: Text(
-                      selectedDate == null
-                          ? AppLocalizations.of(context)!.chooseDate
-                          : selectedDate!.formatDate(),
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Theme.of(context).colorScheme.primary,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                spacing: 8,
-                children: [
-                  Icon(
-                    Icons.access_time,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.eventTime,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Spacer(),
-                  TextButton(
-                    onPressed: () async {
-                      var time = await showTimePicker(
-                        context: context,
-                        initialTime: selectedTime ?? TimeOfDay.now(),
-                      );
-                      print(time);
-                      if (time != null) {
-                        setState(() {
-                          selectedTime = time;
-                        });
-                      }
-                    },
-                    child: Text(
-                      selectedTime == null
-                          ? AppLocalizations.of(context)!.chooseTime
-                          : DateFormat("hh:mm a").format(
-                              DateTime(
-                                1,
-                                1,
-                                1,
-                                selectedTime!.hour,
-                                selectedTime!.minute,
-                              ),
-                            ),
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Theme.of(context).colorScheme.primary,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: FilledButton(
-                onPressed: () {
-                  if (selectedDate != null &&
-                      selectedTime != null &&
-                      titleController.text.isNotEmpty &&
-                      descriptionController.text.isNotEmpty) {
-                    _createEvent();
-                  }
-                },
-                style: FilledButton.styleFrom(
-                  minimumSize: Size(double.infinity, 0),
+                  ],
                 ),
-
-                child: Text(AppLocalizations.of(context)!.addEvent),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  spacing: 8,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.description,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    TextFormField(
+                      controller: descriptionController,
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(
+                          context,
+                        )!.eventDescription,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    Icon(
+                      Icons.date_range,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.eventDate,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () async {
+                        var date = await showDatePicker(
+                          context: context,
+                          initialDate: selectedDate,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(Duration(days: 100)),
+                        );
+                        print(date);
+                        if (date != null) {
+                          setState(() {
+                            selectedDate = date;
+                          });
+                        }
+                      },
+                      child: Text(
+                        selectedDate == null
+                            ? AppLocalizations.of(context)!.chooseDate
+                            : selectedDate!.formatDate(),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.primary,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    Icon(
+                      Icons.access_time,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.eventTime,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () async {
+                        var time = await showTimePicker(
+                          context: context,
+                          initialTime: selectedTime ?? TimeOfDay.now(),
+                        );
+                        print(time);
+                        if (time != null) {
+                          setState(() {
+                            selectedTime = time;
+                          });
+                        }
+                      },
+                      child: Text(
+                        selectedTime == null
+                            ? AppLocalizations.of(context)!.chooseTime
+                            : DateFormat("hh:mm a").format(
+                                DateTime(
+                                  1,
+                                  1,
+                                  1,
+                                  selectedTime!.hour,
+                                  selectedTime!.minute,
+                                ),
+                              ),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.primary,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: FilledButton(
+                  onPressed: () {
+                    if (selectedDate != null &&
+                        selectedTime != null &&
+                        titleController.text.isNotEmpty &&
+                        descriptionController.text.isNotEmpty) {
+                      _createEvent();
+                    }
+                  },
+                  style: FilledButton.styleFrom(
+                    minimumSize: Size(double.infinity, 0),
+                  ),
+                  child: Text(AppLocalizations.of(context)!.addEvent),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -250,8 +258,8 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                       : Theme.of(context).colorScheme.onSecondary,
                 ),
                 child: Row(
-                  mainAxisSize: .min,
-                  crossAxisAlignment: .center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
                       category.icon,
@@ -259,7 +267,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
                           ? Theme.of(context).colorScheme.onPrimary
                           : Theme.of(context).colorScheme.primary,
                     ),
-                    8.horizontalSpace,
+                    const SizedBox(width: 8),
                     Text(
                       provider.isEnglish ? category.nameEn : category.nameAr,
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -281,7 +289,7 @@ class _EventsManagementScreenState extends State<EventsManagementScreen> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Container(
-      margin: .symmetric(horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
